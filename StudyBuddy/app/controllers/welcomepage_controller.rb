@@ -1,5 +1,5 @@
 class WelcomepageController < ApplicationController
-	def index
+	def layout
 	end
 	
 end
