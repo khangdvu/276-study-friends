@@ -6,8 +6,8 @@
   <%= submit_tag 'Filter', name: nil %>
 <% end %>
 
-<% @posts.each do |post| %>
-  <h3><%= post.user %></h3>
-  <h4><%= post.course %></h4>
-  <p><%= post.content %></p>
+<% @posts.each do |m| %>
+  <h3><%= m.user %></h3>
+  <h4><%= m.course %></h4>
+  <p><%= m.content %></p>
 <% end %>

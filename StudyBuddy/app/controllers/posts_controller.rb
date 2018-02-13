@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
+
 	def index
     if params[:course]
-      @posts = Post.search(params[:course])
+      @posts = Post.where("course = ?", params[:course])
     else
       @posts = Post.all
     end
