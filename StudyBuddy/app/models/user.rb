@@ -10,12 +10,12 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
 
-#For validation purposes later
+#For validation purposes
   def has_password?(submitted_password)
-  	encrypted_password == encrypt(submitted_password)
+  	encrypted_password == Digest::SHA2.hexdigest(submitted_password)
   end
 
-  def self.authenticate(name, submitted_password)
+  def self.authenticate(email, submitted_password)
   	user=find_by_email(email)
 
   	return nil if user.nil?
