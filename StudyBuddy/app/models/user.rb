@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 #validating inputs from signup page
   validates :name, :presence => true, :length => { :in => 3..20 }
   validates :email, :presence => true, :uniqueness => true
-  validates :password, :confirmation => true 		#password_confirmation attr
+  validates :password, :confirmation => true 		
   validates_length_of :password, :in => 6..20, :on => :create
 
   before_save :encrypt_password
@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
 #For validation purposes
   def has_password?(submitted_password)
-  	encrypted_password == Digest::SHA2.hexdigest(submitted_password)
+  	self.encrypted_password == Digest::SHA2.hexdigest(submitted_password)
   end
 
   def self.authenticate(email, submitted_password)
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   private
   def encrypt_password
-    encrypted_password  = Digest::SHA2.hexdigest ("#{password}")
+    self.encrypted_password  = Digest::SHA2.hexdigest ("#{password}")
 end
 
 end

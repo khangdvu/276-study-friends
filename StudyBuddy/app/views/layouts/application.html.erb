@@ -11,4 +11,5 @@
 <%= yield %>
 
 </body>
+<h5>Current User: <%= @current_user.name if current_user%>(Blank if no one is logged in. You can also remove this line in views/layouts/application.html.erb)</h5>
 </html>
