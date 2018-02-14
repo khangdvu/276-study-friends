@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   
 #validating inputs from signup page
-  validates :name, :presence => true, :uniqueness => true, :length => { :in => 3..20 }
+  validates :name, :presence => true, :length => { :in => 3..20 }
   validates :email, :presence => true, :uniqueness => true
   validates :password, :confirmation => true 		#password_confirmation attr
   validates_length_of :password, :in => 6..20, :on => :create
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   private
   def encrypt_password
-    self.encrypted_password  = Digest::SHA2.hexdigest (:password)
+    encrypted_password  = Digest::SHA2.hexdigest ("#{password}")
 end
 
 end
