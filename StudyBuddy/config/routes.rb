@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  root 'welcomepage#index'
-  get 'users/new'
+  root 'welcomepage#layout'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
