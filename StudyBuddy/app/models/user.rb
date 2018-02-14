@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
+
+#For validation purposes later
   def has_password?(submitted_password)
   	encrypted_password == encrypt(submitted_password)
   end
@@ -19,15 +21,12 @@ class User < ActiveRecord::Base
   	return nil if user.nil?
   	return user if user.has_password?(submitted_password)
   end
-
+#End of validation purposes
 
 
   private
   def encrypt_password
     self.encrypted_password  = Digest::SHA2.hexdigest (:password)
 end
-
-    
-
 
 end
