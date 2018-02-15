@@ -80,6 +80,11 @@ GEM
       mini_portile2 (~> 2.3.0)
     nokogiri (1.8.2-x86-mingw32)
       mini_portile2 (~> 2.3.0)
+<<<<<<< HEAD
+=======
+    pg (1.0.0)
+    pg (1.0.0-x86-mingw32)
+>>>>>>> user_model
     rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -164,6 +169,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -175,4 +181,8 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
+
    1.15.3
+
+   1.13.6
+

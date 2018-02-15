@@ -2,11 +2,15 @@
 <html>
 <head>
   <title>StudyBuddy</title>
-
+  <%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+>>>>>>> user_model
 </head>
 <body>
 
 <%= yield %>
 
 </body>
+<h5>Current User: <%= @current_user.name if current_user%>(Blank if no one is logged in. You can also remove this line in views/layouts/application.html.erb)</h5>
 </html>
