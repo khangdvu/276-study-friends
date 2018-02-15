@@ -55,3 +55,4 @@ end
 
 #To fix TZ::DataSourceNotFound Error on Windows
 gem 'tzinfo-data'
+

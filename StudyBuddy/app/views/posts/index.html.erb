@@ -1,0 +1,17 @@
+<h1>Welcome to StuddyBuddy</h1>
+
+<%= form_tag(posts_path, method: :get) do %>
+  <%= label_tag(:course, "Course (eg. CMPT123):") %>
+  <%= text_field_tag :course, params[:course] %>
+  <%= submit_tag 'Filter', name: nil %>
+<% end %>
+
+<%= link_to 'Create New Post', new_post_path %>
+
+<% @posts.each do |m| %>
+  <hr>
+  <h3><%= m.user %></h3>
+  <h4><%= m.course %></h4>
+  <p><%= m.content %></p>
+<% end %>
+

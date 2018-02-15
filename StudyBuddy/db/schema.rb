@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20180213054202) do
 
+  create_table "posts", force: :cascade do |t|
+    t.string   "user"
+    t.string   "course"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
