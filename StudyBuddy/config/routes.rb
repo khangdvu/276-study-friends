@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  
+  
 #<<<<<<< HEAD
 #=======
   get 'sessions/new'
@@ -24,6 +27,12 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  
+  # messages routes
+  
+  get '/messages' => 'conversations#create'
+  get '/messages/new' => 'messages#create'
+  
 #>>>>>>> user_model
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -31,6 +40,12 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :posts
+ 
+#>>>>>>> messages_model
+  resources :conversations do
+      resources :messages
+  end
+  
   # Example resource route with options:
   #   resources :products do
   #     member do
@@ -70,4 +85,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end
