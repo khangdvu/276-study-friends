@@ -15,17 +15,18 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
-  end
-
+  	end
   def create
   	@post = Post.new(post_params)
-  	#render plain: params[:post].inspect   #inspection
+  	#@post.user = current_user.email
+  	#render plain: params[:post].inspect
+  	#render plain: post_params.inspect   #inspection
   	@post.save #saves posts
   	redirect_to action: 'index'
   end
 
   private def post_params
-  	params.require(:post).permit(:user, :course, :content)
+  	params.require(:post).permit(:course, :content).merge(user: current_user.email)
   end
 
 end
