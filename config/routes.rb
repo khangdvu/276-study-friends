@@ -1,25 +1,18 @@
 Rails.application.routes.draw do
   
-  
-  
-#<<<<<<< HEAD
-#=======
   get 'sessions/new'
 
   root 'welcomepage#layout'
-#>>>>>>> user_model
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get '/signup' => 'users#new'
   # You can have the root of your site routed with "root"
-#<<<<<<< HEAD
   #root 'welcome#index'
   #root 'posts#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-#=======
   # root 'welcome#index'
 
   # sessions routes
@@ -33,7 +26,6 @@ Rails.application.routes.draw do
   get '/messages' => 'conversations#create'
   get '/messages/new' => 'messages#create'
   
-#>>>>>>> user_model
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
   resources :users
@@ -41,7 +33,6 @@ Rails.application.routes.draw do
   #   resources :products
   resources :posts
  
-#>>>>>>> messages_model
   resources :conversations do
       resources :messages
   end
