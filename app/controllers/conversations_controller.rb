@@ -23,7 +23,7 @@ class ConversationsController < ApplicationController
     def authenticate_user
         unless logged_in?
             flash[:error] = "Please log in first"
-            redirect_to new_login_path
+            redirect_to new_sessions_path
         end
     end
 end
