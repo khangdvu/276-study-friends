@@ -14,8 +14,16 @@ class ConversationsController < ApplicationController
         end
         redirect_to conversation_messages_path(@conversation)
     end
+
     private
     def conversation_params
         params.permit(:sender_id, :recipient_id)
+    end
+
+    def authenticate_user
+        unless log_in
+            flash[:error] = "Please log in first"
+            redirect_to new_login_path
+        end
     end
 end
