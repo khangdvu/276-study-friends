@@ -1,0 +1,13 @@
+<h2>Edit User Profile<h2> 									
+	<%= form_for(@user) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      <br>	
+      <%= f.label :availability %>
+      <%= f.text_field :availability %>
+      <br>
+      <%= f.submit "Edit Account", class: "btn btn-primary" %>
+<% end %>
