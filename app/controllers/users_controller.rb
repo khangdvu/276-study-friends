@@ -18,6 +18,14 @@ class UsersController < ApplicationController
   	@user=	User.find(params[:id])
   end
 
+  def create								        
+	@user=User.edit(user_params)			
+	if @user.save
+  		redirect_to @user
+  	else
+  		render action:"edit"
+  	end
+  end
 
   private
   def user_params
