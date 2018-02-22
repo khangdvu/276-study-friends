@@ -6,15 +6,16 @@ class SessionsController < ApplicationController
 
 
   def create
-  	user = User.authenticate(params[:session][:email], params[:session][:password])
+  	user = User.find_by(email: params[:session][:email])
 
-  	if user.nil?           #if failed to authenticate, reload
-     	flash.now[:notice] = "Please try again."				
-  		render :new
+  	if user && user.authenticate(params[:session][:password])
+      log_in user          #if successful authenticate, sign in
+      flash.now[:notice] = "Log in successful!"     
+      redirect_to user        #if failed to authenticate, reload
+     
     else	
-    	log_in user	         #if successful authenticate, sign in
-      flash.now[:notice] = "Log in successful!"			
-    	redirect_to user
+    	flash.now[:notice] = "Please try again."        
+      render :new
 	end
   end
 
