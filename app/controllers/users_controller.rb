@@ -20,15 +20,6 @@ before_action :logged_in_user, only: [:edit, :update]
   	@user=	User.find(params[:id])
   end
 
-  def create								        
-	@user=User.edit(user_params)			
-	if @user.save
-  		redirect_to @user
-  	else
-  		render action:"edit"
-  	end
-  end
-
   def edit
 	  @user = User.find(params[:id])
   end
