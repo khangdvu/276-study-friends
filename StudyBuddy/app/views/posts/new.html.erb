@@ -3,7 +3,20 @@
 <br><br><br>
 
 <div class="container">
+
+	<h3 style="color: #800020;"> Create Post </h3>
+
+
 	<%= form_for :post, url: posts_path do |f| %>
+
+		<!-- error messages -->
+		<% if @post.errors.any? %>
+			<% @post.errors.full_messages.each do |msg| %>
+				<div class="alert alert-danger"> <%= msg %> </div>
+			<% end %>
+		<% end %>
+
+		<!-- form to create post -->
 		<p> 
 			<%= f.label :course, class:"label" %> <br>
 			<%= f.text_field :course, class:"form-control", placeholder:"e.g. CMPT276" %>
@@ -19,5 +32,6 @@
 
 	<% end %>
 
+	<!-- link to post thread-->
 	<%= link_to 'Back to Posts', posts_path %>
 </div>

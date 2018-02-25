@@ -21,8 +21,11 @@ class PostsController < ApplicationController
   	#@post.user = current_user.email
   	#render plain: params[:post].inspect
   	#render plain: post_params.inspect   #inspection
-  	@post.save #saves posts
-  	redirect_to action: 'index'
+  	if(@post.save) #saves posts
+  	    redirect_to action: 'index'
+    else
+        render 'new'
+    end
   end
 
   private def post_params

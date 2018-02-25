@@ -1,19 +1,26 @@
 <!-- Sign Up Form-->
+<body style="background-color: #343a40">
+      <br><br><br><br>
 
-<h2>Sign Up<h2> 									
+<div class="container" style="width: 20em;">
+
+      <h2 style="text-align: center; color: white;"> Sign Up</h2>
+      <br>
+
 	<%= form_for(@user) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <br>
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-      <br>	
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-      <br>
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-      <br>
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %>
+            <%= f.label :name, class:"sr-only" %>
+            <%= f.text_field :name, class:"form-control", placeholder: "Name" %>
+            <%= f.label :email, class:"sr-only" %>
+            <%= f.email_field :email, class:"form-control", placeholder: "Email" %>	
+            <%= f.label :password, class:"sr-only" %>
+            <%= f.password_field :password, class:"form-control", placeholder: "Password" %>
+            <%= f.label :password_confirmation, class:"sr-only" %>
+            <%= f.password_field :password_confirmation, class:"form-control", placeholder:"Confirm password"  %>
+            <br>
+            <%= f.submit "Create my account", class: "btn btn-primary btn-block" %>
+      <% end %>
 
+      <br>
+      <p style="text-align: center; color: white; ">Already have an account? <%= link_to "Login now!", login_path %></p>
+</div>
+</body>
