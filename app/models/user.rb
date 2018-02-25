@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
+#Associations
+  has_many :post
+
 
 #For validation purposes
   def has_password?(submitted_password)

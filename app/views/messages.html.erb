@@ -1,5 +1,5 @@
 <% if @over_ten %>
-<%= link_to ‘Show Previous’, ‘?m=all’ %>
+<%= link_to 'Show Previous', '?m=all' %>
 <% end %>
 <div class="ui segment">
     <% @messages.each do |message| %>
@@ -19,12 +19,12 @@
     <% end %>
     <% end %>
 </div>
-<%= form_for [@conversation, @message], html: {class: “ui reply form”} do |f| %>
+<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
 <div class="field">
-    <%= f.text_area :body, class: “form-control” %>
+    <%= f.text_area :body, class: "form-control" %>
 </div>
-<%= f.text_field :user_id, value: current_user.id, type: “hidden” %>
+<%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
 <div>
-    <%= f.submit “Add Reply”, class: “ui blue labeled submit icon button” %>
+    <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
 </div>
 <% end %>
