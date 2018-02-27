@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :password
+  attr_accessible :availability
   
 #validating inputs from signup page
   validates :name, :presence => true, :length => { :in => 3..20 }
