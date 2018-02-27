@@ -1,5 +1,5 @@
 <h2>Edit User Profile<h2> 									
-	<%= form_for(@user) do |f| %>
+	<%= form_for(current_user) do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
       <br>
