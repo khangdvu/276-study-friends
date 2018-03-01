@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	skip_before_filter :require_login
 before_action :logged_in_user, only: [:edit, :update]
   #before_action :correct_user, only: [:edit, :update]
   def new
