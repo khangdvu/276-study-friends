@@ -37,7 +37,7 @@ before_action :logged_in_user, only: [:edit, :update]
   end
   private
   def user_params
-      params.require(:user).permit(:name, :email, :password, :availability)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :availability)
     end
 	def logged_in_user
 	unless logged_in?
