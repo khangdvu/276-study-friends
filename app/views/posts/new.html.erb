@@ -1,19 +1,37 @@
-<h1> Create Post </h1>
+<head> Create Post </head>
 
-<%= form_for :post, url: posts_path do |f| %>
-	<p> 
-		<%= f.label :course %> <br>
-		<%= f.text_field :course %>
-	</p>
-	<p> 
-		<%= f.label :content %> <br>
-		<%= f.text_area :content %>
-	</p>
+<br><br><br>
 
-	<p>
-		<%= f.submit %>
-	</p>
+<div class="container">
 
-<% end %>
+	<h3 style="color: #800020;"> Create Post </h3>
 
-<%= link_to 'Back to Posts', posts_path %>
+
+	<%= form_for :post, url: posts_path do |f| %>
+
+		<!-- error messages -->
+		<% if @post.errors.any? %>
+			<% @post.errors.full_messages.each do |msg| %>
+				<div class="alert alert-danger"> <%= msg %> </div>
+			<% end %>
+		<% end %>
+
+		<!-- form to create post -->
+		<p> 
+			<%= f.label :course, class:"label" %> <br>
+			<%= f.text_field :course, class:"form-control", placeholder:"e.g. CMPT276" %>
+		</p>
+		<p> 
+			<%= f.label :content, class:"label" %> <br>
+			<%= f.text_area :content, class:"form-control", placeholder: "preferred locations, time, and date" %>
+		</p>
+
+		<p>
+			<%= f.submit "Save Post", class:"btn btn-primary", style: "float: right" %>
+		</p>
+
+	<% end %>
+
+	<!-- link to post thread-->
+	<%= link_to 'Back to Posts', posts_path %>
+</div>
