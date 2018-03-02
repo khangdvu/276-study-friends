@@ -6,5 +6,11 @@ class PostsControllerTest < ActionController::TestCase
   # end
   test "Posts not empty" do
     post = Post.new
-    assert_not post.save
+    assert_not post.save, 'Empty post saved'
+  end
+
+  test "Post user = current user" do
+    post = Post.new(course: 'a', content: 'b')
+    assert_equal (post.user == current_user.email)
+  end
 end
