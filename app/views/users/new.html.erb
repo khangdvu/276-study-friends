@@ -1,10 +1,12 @@
 <!-- Sign Up Form-->
 
+
 <body style="background-color: #343a40">
       <br><br><br><br>
 
 <div class="container" style="width: 20em;">
       <h2 style="text-align: center; color: white;"> Sign Up</h2>									
+
 	<%= form_for(@user) do |f| %>
       <%= f.label :name, class:"sr-only" %>
       <%= f.text_field :name, class:"form-control", placeholder: "Name" %>
