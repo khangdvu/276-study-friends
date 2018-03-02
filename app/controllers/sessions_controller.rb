@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   	if user && user.authenticate(params[:session][:password])
       log_in user          #if successful authenticate, sign in
       flash.now[:notice] = "Log in successful!"     
-      redirect_to user        #if failed to authenticate, reload
+      redirect_to post        #if failed to authenticate, reload
      
     else	
     	flash.now[:notice] = "Please try again."        
