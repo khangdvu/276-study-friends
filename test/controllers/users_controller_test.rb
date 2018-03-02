@@ -17,4 +17,9 @@ class UsersControllerTest < ActionController::TestCase
     user2 = User.new(name: 'Test2', email: 'test1@test.com', password: '123456')
     assert_not user2.save, 'User has same email'
   end
+
+  test "should get edit" do
+    get :edit
+    assert_response :success
+  end
 end
