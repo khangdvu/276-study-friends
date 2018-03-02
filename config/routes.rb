@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   
   # messages routes
   
-  get '/messages' => 'conversations#create'
-  get '/messages/new' => 'messages#create'
+  #get '/messages' => 'conversations#create'
+  #get '/messages/new' => 'messages#create'
   
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
