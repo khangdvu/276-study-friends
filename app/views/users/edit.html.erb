@@ -1,0 +1,20 @@
+<h2>Edit User Profile<h2> 									
+	<%= form_for(current_user) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      <br>	
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+	<br>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+	<br>
+	<%= f.label :availability, "Availability" %>
+	<%= f.text_field :availability %>
+	<br>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+	<% end %>
+	<% end %>
