@@ -13,7 +13,7 @@ before_action :logged_in_user, only: [:edit, :update]
 	if @user.save
       log_in(@user)
       flash[:notice] = "Log in successful!"
-  		redirect_to @user
+  		redirect_to posts_path
   	else
   		redirect_to '/signup'
       flash[:notice] = "Please try again."
