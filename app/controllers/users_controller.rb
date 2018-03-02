@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
 before_action :logged_in_user, only: [:edit, :update]
   #before_action :correct_user, only: [:edit, :update]
+
   def new
   	@user=User.new
   end
@@ -10,11 +11,12 @@ before_action :logged_in_user, only: [:edit, :update]
   def create								        #if saved, create user, log user in and redirect to user page, else reload
    	@user=User.new(user_params)			
 	if @user.save
-      log_in @user
+      log_in(@user)
       flash[:notice] = "Log in successful!"
   		redirect_to @user
   	else
-  		render action:"new"
+  		redirect_to '/signup'
+      flash[:notice] = "Please try again."
   	end
   end
 

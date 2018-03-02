@@ -1,17 +1,35 @@
-<h1>Recent Posts</h1>
+<!--<h1>Welcome to StuddyBuddy</h1>-->
 
-<%= form_tag(posts_path, method: :get) do %>
-  <%= label_tag(:course, "Course (eg. CMPT123):") %>
-  <%= text_field_tag :course, params[:course] %>
-  <%= submit_tag 'Filter', name: nil %>
-<% end %>
+<head> Study Posts </head>
 
-<%= link_to 'Create New Post', new_post_path %>
+<br><br><br>
 
-<% @posts.each do |m| %>
-  <hr>
-  <h3><%= m.user %></h3>
-  <h4><%= m.course %></h4>
-  <p><%= m.content %></p>
-<% end %>
+<!-- search function -->
+<div class="container">
 
+	<%= form_tag(posts_path, method: :get) do %>
+	<%= label_tag(:course, "Search by course:") %>
+	<%= text_field_tag :course, params[:course] %>
+	<%= submit_tag 'Filter', name: nil%>
+	<% end %>
+
+	<!-- link to create a post -->
+	<%= link_to 'Create New Post', new_post_path %>
+
+</div>
+<hr>
+
+<!-- list of posts -->
+<div class="container" style="align-content: center">
+	<% @posts.each do |m| %>
+		<div class="studypost" style="border: 1px solid #696969; background-color: #DCDCDC; border-radius: 25px; padding: 5px; margin:3px;">
+			<h5 class="text-uppercase" style="font-weight: bold; color:#800020"><%= m.course %></h5>
+			<p style="padding-left: 8px;"><%= m.content %></p>
+			<br>
+			<p style="color:gray; padding-right: 8px; text-align: right;"><%= m.user %></p>
+		</div>
+		<br>
+	<% end %>
+</div>
+
+<br><br>
