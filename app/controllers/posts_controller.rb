@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 
+	before_action :logged_in_user, only: [:index, :new, :create]
   #displays posts based on filter; display all if no filter
 	def index
     if params[:course]
@@ -27,6 +28,14 @@ class PostsController < ApplicationController
 
   private def post_params
   	params.require(:post).permit(:course, :content).merge(user: current_user.email)
+  end
+	
+	def logged_in_user
+	unless logged_in?
+		store_location
+		flash[:danger] = "Please log in."
+		redirect_to login_url
+	end
   end
 
 end
