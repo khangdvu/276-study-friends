@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, length: { minimum: 6 }
   has_secure_password :validations => false
 
+  has_many :conversations, :foreign_key => :sender_id
+
 end
