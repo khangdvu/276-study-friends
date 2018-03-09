@@ -1,19 +1,28 @@
-<h2>Edit User Profile<h2> 									
+<br><br><br>
+
+<div class="container"><h2>Edit User Profile</h2></div>								
+<div class="container">
 	<%= form_for(current_user) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <br>
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+      <%= f.label :name, "Change name"%>
+      <%= f.text_field :name, class:"form-control", placeholder: "New name" %>
       <br>	
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+
+      <%= f.label :email, "Change email"%>
+      <%= f.text_field :email, class:"form-control", placeholder: "New email" %>
+      <br>  
+
+
+      <%= f.label :password, "Change password" %>
+      <%= f.password_field :password, class:"form-control", placeholder: "New password" %>
+      <%= f.label :password_confirmation, class:"sr-only" %>
+      <%= f.password_field :password_confirmation, class:"form-control", placeholder:"Confirm new password" %>
 	<br>
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+
+
+	<%= f.label :availability, "Edit availability" %><br>
+	<%= f.text_area :availability, class:"form-control" %>
 	<br>
-	<%= f.label :availability, "Availability" %>
-	<%= f.text_field :availability %>
-	<br>
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary", style:"float: right" %>
 	<% end %>
+</div>
