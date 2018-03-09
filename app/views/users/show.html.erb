@@ -1,7 +1,27 @@
-<h3>User <%= @user.id %> </h3>
-<h3>Name: <%= @user.name %> </h3>
-<h3>Email: <%= @user.email %> </h3>
-<h3>Availability: <%= @user.availability %> </h3>
+<!--<h3>User <%= @user.id %> </h3> -->
+<head>
+	<%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
+ 	<%= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
+ 	<%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'%>
+ 	<%= csrf_meta_tags %>
+</head>
 
-<%= link_to 'Edit profile', edit_user_path(current_user)%>
-<%= link_to 'Show posts', posts_path %>
+
+<div class="jumbotron jumbotron-fluid" style="background-color: #DCDCDC">
+	<div class="container">
+		<br>
+		<p style="text-align: center;"><img src="https://eliaslealblog.files.wordpress.com/2014/03/user-200.png" class="img-circle"></p>
+		<h4 style="text-align: center; vertical-align: bottom;"><%= @user.name %> </h4>
+		<h4 style="text-align: center; vertical-align: bottom;"><%= @user.email %> </h4>
+	</div>
+</div>
+
+<div class="container" style="border: solid black 1px; box-shadow: 5px 5px 5px 5px #D3D3D3;">
+	<h4>Availability:</h4>
+	<p> <%=  @user.availability %> </p>
+</div>
+
+<br>
+<div class="container">
+ 	<p style="float: right"><%= link_to 'Edit profile', edit_user_path(current_user)%></p>
+</div>
