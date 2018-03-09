@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
 
 
+  has_many :conversations, :foreign_key => :sender_id
+
 end

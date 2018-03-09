@@ -26,6 +26,7 @@
 			<h5 class="text-uppercase" style="font-weight: bold; color:#800020"><%= m.course %></h5>
 			<p style="padding-left: 8px;"><%= m.content %></p>
 			<br>
+			<%= button_to "Reply", conversations_path(sender_id: current_user.id, recipient_id: User.find_by(email: m.user)) %>
 			<p style="color:gray; padding-right: 8px; text-align: right;"><%= m.user %></p>
 		</div>
 		<br>
