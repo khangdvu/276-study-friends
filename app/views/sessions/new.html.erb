@@ -1,15 +1,90 @@
-<head>	
+<head>
 	<%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'%>
   <%= csrf_meta_tags %>
+  <title> Welcome to StudyBuddy </title>
 </head>
 
+<style>
+	.jumbotron {
+		position: relative;
+		min-height: 40vw;
+		background-size: 100%;
+		padding: 10px;
+	}
+	.jumbotron .bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://www.sfu.ca/content/sfu/hire/recruit-with-career-services/jcr:content/main_content/textimage/image.img.1280.high.jpg/1384284236302.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		filter: blur(2px) opacity(80%);
+	}
+	.jumbotron .jumbotron-title {
+		font-size: 10vw;
+		margin: 5px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		color: black;
+		text-shadow:3px 3px 10px #fff, 3px 3px 10px #ccc;
+	}
+	.jumbotron .jumbotron-content {
+		position: relative;
+		padding: 15px 15px;
+		margin: auto auto auto auto;
+		width: 30%;
+		height: 65%;
+		background-color: rgba(255,255,255,0.65);
+		border-radius: 20px;
+	}
+</style>
+<!--
+<div class="jumbotron">
+	<body class="bg-img", style=" background-repeat: no-repeat; background-size:cover; background-image: url('https://www.sfu.ca/content/sfu/hire/recruit-with-career-services/jcr:content/main_content/textimage/image.img.1280.high.jpg/1384284236302.jpg');">
+	</body>
+</div>
+-->
+<body>
 
-<body style=" background-repeat: no-repeat; background-size:cover; background-image: url('https://www.sfu.ca/content/sfu/hire/recruit-with-career-services/jcr:content/main_content/textimage/image.img.1280.high.jpg/1384284236302.jpg');">
+<div class="jumbotron">
+
+	<div class="bg"> </div>
+	<!--
+	<div class="jumbotron-title">
+		Welcome to <br> StudyBuddy!
+	</div>
+	-->
+	<div class="container">
+	<div class="jumbotron-content">
+		<h2 style="color:#343a40; text-align: center; font-size: 3vw;"> Welcome to StudyBuddy</h2>
+		<br>
+		<h1 style="color:#343a40; text-align: center; font-size: 2.5vw;"> Sign In </h1>
+		<%= form_for(:session, url: login_path) do |f| %>
+     	<%= f.label :email, class:"sr-only" %>
+     	<%= f.email_field :email, class: 'form-control', placeholder: "Email Address" %>
+
+     	<%= f.label :password, class:"sr-only" %>
+     	<%= f.password_field :password, class: 'form-control', placeholder:"Password" %>
+
+     	<%= f.submit "Log in", class: "btn btn-primary btn-primary btn-block" %>
+     	<% end %>
+     	<p style="text-align: center; color: #343a40; font-size: 1.3vw;"> New user? <%= link_to "Sign up now!", signup_path %></p>
+    </div>
+	</div>
+</div>
+
+<div class="container" style="color: #54585A;">
+	<h4> About Studybuddy </h4>
+	<p> StudyBuddy SFU is an online organizational tool for students to find and set up study sessions with other students. The application will allow users to search for other students with whom to study based on their created profiles, courses currently being taken, etc. Users will also be able to post requests for study partners, be it for a certain subject or at a certain time and location, that can be seen by everyone. Students can, then, direct message each other to arrange a study time and location. Additionally, there will be a peer review system to help students find the ideal study partner. </p>
+
 
 <div class="container">
-	<h1>Welcome to StuddyBuddy! </h1>
+	<!--<h1>Welcome to StuddyBuddy! </h1>-->
 </div>
 	<!-- Message for wrong email password combination-->
 	<!-- fix to move flash notice elsewhere -->
@@ -19,7 +94,7 @@
 
 
 
-	<!--Login Form -->
+	<!--Login Form
 	<div class="container" style="width: 20em; background-color: rgba(255,255,255,0.65); padding: 1em; border-radius: 20px;">
 		<h2 style="color:#343a40; text-align: center;"> Sign In </h2>
 		<br>
@@ -32,9 +107,8 @@
 
      	<%= f.submit "Log in", class: "btn btn-primary btn-primary btn-block" %>
     <% end %>
-
-
-	<!--Link to Signup form -->
+ --> 
+	<!--Link to Signup form
     <p style="text-align: center; color: #343a40; "> New user? <%= link_to "Sign up now!", signup_path %></p>
-
+-->
 </body>
