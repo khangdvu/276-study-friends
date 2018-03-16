@@ -7,13 +7,7 @@
 </head>
 
 <style>
-	.jumbotron {
-		position: relative;
-		min-height: 40vw;
-		background-size: 100%;
-		padding: 10px;
-	}
-	.jumbotron .bg {
+	.bg {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -22,9 +16,17 @@
 		background-image: url('https://www.sfu.ca/content/sfu/hire/recruit-with-career-services/jcr:content/main_content/textimage/image.img.1280.high.jpg/1384284236302.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
-		filter: blur(2px) opacity(80%);
+		filter: opacity(80%);
+		z-index: -2;
 	}
-	.jumbotron .jumbotron-title {
+	.jumbo-content {
+		position: relative; 
+		display: flex; 
+		background-color: rgba(225,225,225,0.75); 
+		align-items: center; 
+		padding: 15px;
+	}
+	.jumbo-title {
 		font-size: 10vw;
 		margin: 5px;
 		position: absolute;
@@ -33,55 +35,71 @@
 		color: black;
 		text-shadow:3px 3px 10px #fff, 3px 3px 10px #ccc;
 	}
-	.jumbotron .jumbotron-content {
+	.login{
 		position: relative;
 		padding: 15px 15px;
 		margin: auto auto auto auto;
-		width: 30%;
-		height: 65%;
-		background-color: rgba(255,255,255,0.65);
-		border-radius: 20px;
+		/*height: 65%;*/
+		background-color: rgba(255,255,255,0);
+		/*border-radius: 20px;*/
+		display: inline-block;
+		flex-basis: 50%;
+		z-index: 1;
+	}
+	.about{
+		position: relative;
+		padding: 15px 15px;
+		margin: auto auto auto auto;
+		width: 70%;
+		/*height: 65%;*/
+		background-color: rgba(255,255,255,0);
+		/*border-radius: 20px;*/
+		display: inline-block;
+		flex-basis: 50%;
 	}
 </style>
 <!--
-<div class="jumbotron">
+<div class="jumbo">
 	<body class="bg-img", style=" background-repeat: no-repeat; background-size:cover; background-image: url('https://www.sfu.ca/content/sfu/hire/recruit-with-career-services/jcr:content/main_content/textimage/image.img.1280.high.jpg/1384284236302.jpg');">
 	</body>
 </div>
 -->
 <body>
 
-<div class="jumbotron">
 
 	<div class="bg"> </div>
 	<!--
-	<div class="jumbotron-title">
+	<div class="jumbo-title">
 		Welcome to <br> StudyBuddy!
 	</div>
 	-->
-	<div class="container">
-	<div class="jumbotron-content">
-		<h2 style="color:#343a40; text-align: center; font-size: 3vw;"> Welcome to StudyBuddy</h2>
-		<br>
-		<h1 style="color:#343a40; text-align: center; font-size: 2.5vw;"> Sign In </h1>
-		<%= form_for(:session, url: login_path) do |f| %>
-     	<%= f.label :email, class:"sr-only" %>
-     	<%= f.email_field :email, class: 'form-control', placeholder: "Email Address" %>
+	<div class="jumbo-content">
+		<div class="jumbo-content about" style="flex-basis: 70%; margin-right: 15px;">
+			<h4> Welcome to StudyBuddy </h4>
+			<p> StudyBuddy SFU is an online organizational tool for students to find and set up study sessions with other students. The application will allow users to search for other students with whom to study based on their created profiles, courses currently being taken, etc. Users will also be able to post requests for study partners, be it for a certain subject or at a certain time and location, that can be seen by everyone. Students can, then, direct message each other to arrange a study time and location. Additionally, there will be a peer review system to help students find the ideal study partner. </p>
+		</div>
+		<div class="jumbo-content login" style="flex-basis: 30%;">
+			<!--<h2 style="color:#343a40; text-align: center; font-size: 3vw;"> Welcome to StudyBuddy</h2>-->
+			<br>
+			<h1 style="color:#343a40; text-align: center; font-size: 2.5vw;"> Sign In </h1>
+			<%= form_for(:session, url: login_path) do |f| %>
+	     	<%= f.label :email, class:"sr-only" %>
+	     	<%= f.email_field :email, class: 'form-control', placeholder: "Email Address" %>
 
-     	<%= f.label :password, class:"sr-only" %>
-     	<%= f.password_field :password, class: 'form-control', placeholder:"Password" %>
+	     	<%= f.label :password, class:"sr-only" %>
+	     	<%= f.password_field :password, class: 'form-control', placeholder:"Password" %>
 
-     	<%= f.submit "Log in", class: "btn btn-primary btn-primary btn-block" %>
-     	<% end %>
-     	<p style="text-align: center; color: #343a40; font-size: 1.3vw;"> New user? <%= link_to "Sign up now!", signup_path %></p>
-    </div>
+	     	<%= f.submit "Log in", class: "btn btn-primary btn-primary btn-block" %>
+	     	<% end %>
+	     	<p style="text-align: center; color: #343a40; font-size: 1.3vw;"> New user? <%= link_to "Sign up now!", signup_path %></p>
+	    </div>
 	</div>
-</div>
 
+<!--
 <div class="container" style="color: #54585A;">
 	<h4> About Studybuddy </h4>
 	<p> StudyBuddy SFU is an online organizational tool for students to find and set up study sessions with other students. The application will allow users to search for other students with whom to study based on their created profiles, courses currently being taken, etc. Users will also be able to post requests for study partners, be it for a certain subject or at a certain time and location, that can be seen by everyone. Students can, then, direct message each other to arrange a study time and location. Additionally, there will be a peer review system to help students find the ideal study partner. </p>
-
+-->
 
 <div class="container">
 	<!--<h1>Welcome to StuddyBuddy! </h1>-->
