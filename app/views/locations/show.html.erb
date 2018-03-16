@@ -5,8 +5,6 @@
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDU-Lz0TW46Hza0E1gMv8weHy1gM9hKrjY"> 
 		</script>
-
-
 	
 		<script>
 			var map;
@@ -18,13 +16,11 @@
 			var markers = [];
 
 			var libraryImage = new google.maps.MarkerImage("https://www.shareicon.net/data/32x32/2015/11/03/666185_library_512x512.png" ); 
+			var libraryImage2 = new google.maps.MarkerImage("https://www.icon2s.com/img32/32x32-black-white-metro-library-icon.png");
 			var coffeeImage = new google.maps.MarkerImage("https://cdn2.iconfinder.com/data/icons/map-pins-1-01-easylines/128/yumminky-pin-13-32.png");
 			var starbucksImage = new google.maps.MarkerImage("https://www.shareicon.net/data/32x32/2015/09/01/94011_starbucks_512x512.png");
-			//http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2| // just black
-			//https://image.flaticon.com/icons/png/512/8/8145.png //good logo too big
-			//https://www.shareicon.net/data/32x32/2015/11/03/666185_library_512x512.png
-			// got it at https://www.shareicon.net/map-sign-locator-location-placeholder-marker-library-libraries-maps-and-flags-maps-666185
-			// coffee at https://www.iconfinder.com/icons/2090605/coffee_coffee_shop_cup_marker_pin_tea_house_yumminky_icon#size=32
+			var otherImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|"); // just black
+			var cafeImage = new google.maps.MarkerImage("https://cdn3.iconfinder.com/data/icons/food-and-drinks-icons/512/Coffee-32.png");
 
 			function initialize() {
 				var center = new google.maps.LatLng(49.2624424, -122.9172366);
@@ -33,77 +29,84 @@
 					zoom: 12
 				});
 
-				/*---------------------------Adding a single Marker--------------------------------------
-				var starbucks = new google.maps.LatLng(49.281246, -123.0741775);
-				var mkr = new google.maps.Marker({
-					position: starbucks,
-					map: map,
-					title: "Starbucks" 
-				});
-				mkr.setMap(map); 
-				//------------------------------------------------------------------------------------ */
-
-				 request = {
+				request = {
 					location:center,
-					radius:10110,
-					types: ['library']
+					radius:6000,
+					types: ['library'],
+					query: ['library']
 				}; 
  
-				 request1 = {
+				request1 = {
 					location:center,
-					radius:12000,
+					radius:7000,
 					types: ['cafe'],
+					query: ['Starbucks'],
 					keyword: ['Starbucks']
+					//keyWord: ['Tim Hortons']
 				};
 
-				 request2 = {
+				request2 = {
 					location:center,
-					radius:12000,
+					radius:9000,
 					types: ['cafe'],
+					query: ['Tim Hortons'],
 					keyword: ['Tim Hortons']
 				};
 
-				//isLibrary = Boolean(true);
-
+				request3 = {
+					location:center,
+					radius:6000,
+					types: ['cafe'],
+					query: ['cafe']
+				};				
 
 				infowindow = new google.maps.InfoWindow();
-
 				service = new google.maps.places.PlacesService(map);
 
-				service.nearbySearch(request,callback);
-				service.nearbySearch(request1,callback1);
-				service.nearbySearch(request2,callback2);
+				service.textSearch(request,callback);
+				service.textSearch(request1,callback1);
+				service.textSearch(request2,callback2);
+				service.textSearch(request3,callback3);
 				
-				google.maps.event.addListener(map, 'dblclick', function(event) {
+				google.maps.event.addListener(map, 'click', function(event) {
 					map.setCenter(event.latLng)
 					clearResults(markers)
 
-				 var request = {
-					location: event.latLng,
-					radius:5000,
-					types: ['library']
-				}; 
- 
-				 var request1 = {
-					location: event.latLng,
-					radius:5000,
-					types: ['cafe'],
-					keyword: ['Starbucks']
-				};
+					var request = {
+						location: event.latLng,
+						radius:2000,
+						types: ['library'],
+						query: ['library']
+					}; 
+	 
+					var request1 = {
+						location: event.latLng,
+						radius:2000,
+						types: ['cafe'],
+						query: ['Starbucks'],
+						keyword: ['Starbucks']
+					};
 
-				 var request2 = {
-					location: event.latLng,
-					radius:5000,
-					types: ['cafe'],
-					keyword: ['Tim Hortons']
-				};
+					var request2 = {
+						location: event.latLng,
+						radius:2000,
+						types: ['cafe'],
+						query: ['Tim Hortons'],
+						keyword: ['Tim Hortons']
+					};
+					var request3 = {
+						location: event.latLng,
+						radius:2000,
+						types: ['cafe'],
+						query: ['cafe']
+					};							
 
-				service.nearbySearch(request,callback);
-				service.nearbySearch(request1,callback1);
-				service.nearbySearch(request2,callback2);
-
-					})
-				}			
+				service.textSearch(request,callback);
+				service.textSearch(request1,callback1);
+				service.textSearch(request2,callback2);
+				service.textSearch(request3,callback3);
+				});
+			}			
 			
 
 			function callback(results, status) {
@@ -127,21 +130,39 @@
 						markers.push(createMarker2(results[i])); //use results to call createMarker
 						}
 				}
+			}
+			function callback3(results, status) {
+				if(status == google.maps.places.PlacesServiceStatus.OK){ 
+					for(var i=0;i <results.length; i++){
+						markers.push(createMarker3(results[i])); //use results to call createMarker
+						}
+				}
 			}			
 
 			function createMarker(place) {
 				var placeLoc = place.geometry.location;
+				var libIcon = { url: "https://www.icon2s.com/img32/32x32-black-white-metro-library-icon.png",
+						    scaledSize: new google.maps.Size(26, 26), // scaled size
+    						origin: new google.maps.Point(0,0), // origin
+    						anchor: new google.maps.Point(0, 0) // anchor
+							};					
 				var marker = new google.maps.Marker({
 					map:map,
 					animation: google.maps.Animation.DROP,
-					icon: libraryImage,
+					icon: libIcon,
 					position: place.geometry.location
 				}); 
-				google.maps.event.addListener(marker, 'click',function() { // waits for a click, then shows content
+				google.maps.event.addListener(marker, 'mouseover',function() { // waits for a click, then shows content
 					infowindow.setContent(place.name);
 					infowindow.open(map,this);
 
 				});
+				google.maps.event.addListener(marker, 'click',function() { // waits for a click, then shows content
+					var address = place.formatted_address;
+					infowindow.setContent(address);
+					infowindow.open(map,this);
+
+				});				
 				return marker;
 			}
 
@@ -154,27 +175,65 @@
 					icon: starbucksImage,
 					position: place.geometry.location
 				}); 
-				google.maps.event.addListener(marker, 'click',function() { // waits for a click, then shows content
+				google.maps.event.addListener(marker, 'mouseover',function() { // waits for a click, then shows content
 					infowindow.setContent(place.name);
 					infowindow.open(map,this);
 
 				});
+				google.maps.event.addListener(marker, 'click',function() { // waits for a click, then shows content
+					var address = place.formatted_address;
+					infowindow.setContent(address);
+					infowindow.open(map,this);
+
+				});				
 				return marker;
 			}
 				function createMarker2(place) {
 				var placeLoc = place.geometry.location;
-				
+				var timIcon = { url: "https://app.guusto.com/guusto2/img/90.png",
+						    scaledSize: new google.maps.Size(27, 27), // scaled size
+    						origin: new google.maps.Point(0,0), // origin
+    						anchor: new google.maps.Point(0, 0) // anchor
+							};					
 				var marker = new google.maps.Marker({
 					map:map,
 					animation: google.maps.Animation.DROP,
-					//icon: coffeeImage,
+					icon: timIcon,
 					position: place.geometry.location
 				}); 
-				google.maps.event.addListener(marker, 'click',function() { // waits for a click, then shows content
+				google.maps.event.addListener(marker, 'mouseover',function() { // waits for a click, then shows content
 					infowindow.setContent(place.name);
 					infowindow.open(map,this);
 
 				});
+				google.maps.event.addListener(marker, 'click',function() { // waits for a click, then shows content
+					var address = place.formatted_address;
+					infowindow.setContent(address);
+					infowindow.open(map,this);
+
+				});							
+				return marker;
+			}
+
+				function createMarker3(place) {
+				var placeLoc = place.geometry.location;			
+				var marker = new google.maps.Marker({
+					map:map,
+					animation: google.maps.Animation.DROP,
+					icon: cafeImage,
+					position: place.geometry.location
+				}); 
+				google.maps.event.addListener(marker, 'mouseover',function() { // waits for a click, then shows content
+					infowindow.setContent(place.name);
+					infowindow.open(map,this);
+
+				});
+				google.maps.event.addListener(marker, 'click',function() { // waits for a click, then shows content
+					var address = place.formatted_address;
+					infowindow.setContent(address);
+					infowindow.open(map,this);
+
+				});							
 				return marker;
 			}
 
@@ -185,7 +244,7 @@
 				markers = []
 			}
 			google.maps.event.addDomListener(window,'load',initialize);
-			
+
 		</script>
 
 		<style>
@@ -201,3 +260,4 @@
 		</div>
 	</body>
 	</html>
+
