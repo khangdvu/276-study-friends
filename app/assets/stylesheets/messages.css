@@ -1,0 +1,84 @@
+.chatperson{
+  display: block;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 15px;
+  padding: 4px;
+}
+.chatperson:hover{
+  text-decoration: none;
+  border-bottom: 1px solid orange;
+}
+.namechat {
+    display: inline-block;
+    vertical-align: middle;
+}
+.chatperson .chatimg img{
+  width: 40px;
+  height: 40px;
+  background-image: url('http://i.imgur.com/JqEuJ6t.png');
+}
+.chatperson .pname{
+  font-size: 18px;
+  padding-left: 5px;
+}
+.chatperson .lastmsg{
+  font-size: 12px;
+  padding-left: 5px;
+  color: #ccc;
+}
+
+
+body {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.container {
+    border: 2px solid #dedede;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+<body>

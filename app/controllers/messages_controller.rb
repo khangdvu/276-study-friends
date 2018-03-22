@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
 end
 def index
+    @conversations= Conversation.all
+    @users= User.all
     @messages = @conversation.messages
     if @messages.length > 10
         @over_ten = true
