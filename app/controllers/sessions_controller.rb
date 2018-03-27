@@ -6,22 +6,27 @@ class SessionsController < ApplicationController
   def new
   end
 
+def create
+  if request.env['omniauth.auth']
+    user = User.create_with_omniauth(request.env['omniauth.auth'])
+    session[:user_id] = user.id    
+    redirect_to user_path(user.id)
+  else
+    user = User.find_by(email: params[:session][:email])
 
-
-
-  def create
-  	user = User.find_by(email: params[:session][:email])
-
-  	if user && user.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:session][:password])
       log_in user          #if successful authenticate, sign in
       flash.now[:notice] = "Log in successful!"     
       redirect_to posts_path        #if failed to authenticate, reload
      
-    else	
-    	flash.now[:notice] = "Please try again."        
+    else  
+      flash.now[:notice] = "Please try again."        
       render :new
-	end
   end
+end
+end
+
+
 
   def destroy
     log_out

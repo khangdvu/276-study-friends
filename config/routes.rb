@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
-  
+
+  Rails.application.routes.draw do
+  get 'auth/facebook/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+end
   # messages routes
   
   #get '/messages' => 'conversations#create'
