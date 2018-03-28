@@ -2,39 +2,110 @@
 
 <head> Study Posts </head>
 
-<br><br><br>
+<style>
+	.bg {
+		background-color: #54585a;
+		background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');
+		background-repeat: repeat-x repeat-y;
+		/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+	}
+	
+	.search {
+		display: inline-block;
+	}
 
+	.createNew {
+		display: inline-block;
+		float: right;
+	}
+
+	.thread {
+		align-content: center;
+	}
+	
+	.studypost {
+		position: relative;
+		border-left: 5px solid #A6192E;
+		background-color: rgba(85, 88, 90, 0.2);
+		padding: 5px;
+		margin: 3px;
+	}
+	
+	.studypost .course {
+		font-weight: bold; 
+		color: #A6192E;
+		text-transform: uppercase;
+		display: inline-block;
+		margin-left: 5px;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+	
+	.studypost .content {
+		padding-left: 8px;
+	}
+	
+	.studypost .user {
+		color: black;
+		display: inline-block;
+		float: right;
+		margin-right: 5px;
+		
+	}
+	
+	.studypost .button {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		padding: 0 15px 15px 0;
+	}
+</style>
+
+
+
+<br><br><br><br>
+<body>
 <!-- search function -->
 <div class="container">
-
+	<div class="search">
 	<%= form_tag(posts_path, method: :get) do %>
 	<%= label_tag(:course, "Search by course:") %>
 	<%= text_field_tag :course, params[:course] %>
 	<%= submit_tag 'Filter', name: nil%>
 	<% end %>
-
+	</div>
 	<!-- link to create a post -->
+	<div class="createNew">
 	<%= link_to 'Create New Post', new_post_path %>
-
+	</div>
 </div>
 <hr>
 
 <!-- list of posts -->
-<div class="container" style="align-content: center">
-	<% @posts.each do |m| %>
-		<div class="studypost" style="border: 1px solid #696969; background-color: #DCDCDC; border-radius: 25px; padding: 5px; margin:3px;">
-			<h5 class="text-uppercase" style="font-weight: bold; color:#800020"><%= m.course %></h5>
-			<p style="padding-left: 8px;"><%= m.content %></p>
-			<br>
-			<% if m.user == current_user.email %>
-				<%= button_to "Delete", post_path(m),form: {data: { confirm: 'Are you sure?' }}, method: :delete  %>
-			<% else %>	
-				<%= button_to "Reply", conversations_path(sender_id: current_user.id, recipient_id: User.find_by(email: m.user)) %>
+<div class="container">
+	<div class="thread">
+		<% @posts.each do |m| %>
+			<div class="container">
+				<div class="studypost">
+					<h5 class="course"><%= m.course %></h5>
+					<p class="user"><%= m.user %></p>
+					<hr>
+					<br>
+					<p class="content"><%= m.content %></p>
+					<br>
+					<div class="button">
+					<% if m.user == current_user.email %>
+						<%= button_to "Delete", post_path(m),form: {data: { confirm: 'Are you sure?' }}, method: :delete  %>
+					<% else %>
+	
+						<%= button_to "Reply", conversations_path(sender_id: current_user.id, recipient_id: User.find_by(email: m.user)) %>
+					<% end %>
+					</div>
+					
+				</div>
+			</div>
 			<% end %>
-			<p style="color:gray; padding-right: 8px; text-align: right;"><%= m.user %></p>
-		</div>
-		<br>
-	<% end %>
+	</div>
 </div>
 
-<br><br>
+</body>

@@ -1,4 +1,30 @@
 
+<style>
+	.img {
+		border-radius: 50%;
+	}
+	.jumbo-bg {
+		background-color: rgba(85, 88, 90, 0.2);
+	}
+	.jumbo-bg .header {
+		text-align: center;
+	}
+	.jumbo-bg .header .img {
+		border-radius: 50%;
+	}
+	.jumbo-bg .header .header-info {
+		vertical-align: bottom;
+	}
+	.availability {
+		position: relative;
+		border-left: 5px solid #A6192E;
+		background-color: rgba(85, 88, 90, 0.2);
+		padding: 5px;
+		margin: 5px;
+	}
+	}
+</style>
+
 <br><br><br>
 
 <!--<h3>User <%= @user.id %> </h3> -->
@@ -11,14 +37,17 @@
 
 
 
-<div class="jumbotron jumbotron-fluid" style="background-color: #DCDCDC">
+<div class="jumbotron jumbotron-fluid jumbo-bg">
 	<div class="container">
+		<div class="header"
 		<br>
-		<p style="text-align: center;"><img src="https://eliaslealblog.files.wordpress.com/2014/03/user-200.png" class="img-circle"></p>
-		<h4 style="text-align: center; vertical-align: bottom;"><%= @user.name %> </h4>
-		<h4 style="text-align: center; vertical-align: bottom;"><%= @user.email %> </h4>
+			<img src="https://eliaslealblog.files.wordpress.com/2014/03/user-200.png">
+			<h4 class="header-info"><%= @user.name %> </h4>
+			<h4 class="header-info"><%= @user.email %> </h4>
+		</div>
 	</div>
 </div>
+
 
 <div class="container" style="border: solid black 1px; box-shadow: 5px 5px 5px 5px #D3D3D3;">
 	<h4>Description:</h4>
