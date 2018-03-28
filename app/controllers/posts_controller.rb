@@ -25,7 +25,12 @@ class PostsController < ApplicationController
   	@post.save #saves posts
   	redirect_to action: 'index'
   end
+def destroy
+  @post = Post.find(params[:id])
+  @post.destroy
 
+  redirect_to posts_path
+end
   private def post_params
   	params.require(:post).permit(:course, :content).merge(user: current_user.email)
   end
