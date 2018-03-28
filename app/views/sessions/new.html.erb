@@ -9,7 +9,7 @@
   box-sizing: border-box;
   position: relative;
   /* width: 13em;  - apply for fixed size */
-  margin: 0.2em;
+  margin: 2.1em;
   padding: 0 15px 0 46px;
   border: none;
   text-align: left;
@@ -18,14 +18,15 @@
   border-radius: 0.2em;
   font-size: 16px;
   color: #FFF;
+  display: inline-block;
 }
 .loginBtn:before {
   content: "";
   box-sizing: border-box;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 34px;
+  left: 5;
+  width: 50px;
   height: 100%;
 }
 .loginBtn:focus {
@@ -86,8 +87,9 @@
 
 	<!--Link to Signup form -->
    <p  style="text-align: center; color: #111111;  "> OR </p>
-<button class="loginBtn loginBtn--facebook">
-  <%= link_to "Log in with Facebook", '/auth/facebook'%>
-</button>
+
+
+  <%= link_to "Log in With Facebook",'/auth/facebook', class: "loginBtn loginBtn--facebook"%>
   <p style="text-align: center; color: #111111; font-weight=900 "> New user? <%= link_to "Sign up now!", signup_path %></p>
+</div>
 </body>
