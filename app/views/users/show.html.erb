@@ -44,6 +44,9 @@
 			<img src="https://eliaslealblog.files.wordpress.com/2014/03/user-200.png">
 			<h4 class="header-info"><%= @user.name %> </h4>
 			<h4 class="header-info"><%= @user.email %> </h4>
+			<% if current_user.id != @user.id %>
+			<%= button_to "Message User", conversations_path(sender_id: current_user.id, recipient_id: @user.id) %>
+			<% end %>
 		</div>
 	</div>
 </div>
