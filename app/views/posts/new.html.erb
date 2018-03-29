@@ -16,6 +16,12 @@
 			<% end %>
 		<% end %>
 
+		<% if flash[:notice] %>
+     	<div class="notice" style="color:red"><%= flash[:notice] %></div>
+    <% else %>
+    	<br>
+    <% end %>
+
 		<!-- form to create post -->
 		<p> 
 			<%= f.label :course, class:"label" %> <br>

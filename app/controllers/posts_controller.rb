@@ -22,8 +22,12 @@ class PostsController < ApplicationController
   	#@post.user = current_user.email
   	#render plain: params[:post].inspect
   	#render plain: post_params.inspect   #inspection
-  	@post.save #saves posts
-  	redirect_to action: 'index'
+  	if @post.save #saves posts
+  	  redirect_to action: 'index'
+    else
+      redirect_to action: 'new'
+      flash[:notice] = "Missing fields. Please try again"
+    end
   end
 def destroy
   @post = Post.find(params[:id])
