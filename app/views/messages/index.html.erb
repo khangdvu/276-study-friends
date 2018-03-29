@@ -155,7 +155,7 @@ body {
    </div>
 <% else %>
 <div class="container">
-  <div class="left"><strong><%= user.name %></strong> </div> 
+  <div class="left"><strong><%= link_to user.name, user_path(id: user.id) %></strong> </div> 
   <%= message.body %>
   <span class="time-right"><%=message.message_time %>     </span>
 </div>

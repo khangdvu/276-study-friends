@@ -18,7 +18,12 @@
 
 <div class="container">
   <div class="signup-content">
-    <h2> Sign Up</h2>									
+    <h2> Sign Up</h2>	
+    <% if flash[:notice] %>
+    <div class="notice" style="color:red"><%= flash[:notice] %></div>
+    <% else %>
+    <br>
+    <% end %>								
 
     <%= form_for(@user) do |f| %>
     <%= f.label :name, class:"sr-only" %>

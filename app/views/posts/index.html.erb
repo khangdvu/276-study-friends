@@ -88,7 +88,9 @@
 			<div class="container">
 				<div class="studypost">
 					<h5 class="course"><%= m.course %></h5>
-					<p class="user"><%= m.user %></p>
+					<p class="user">
+						<% user = User.find_by(email: m.user) %>
+						<%= link_to user.name, user_path(id: user.id) %></p>
 					<hr>
 					<br>
 					<p class="content"><%= m.content %></p>
