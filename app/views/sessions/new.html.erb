@@ -127,8 +127,16 @@
 		</div>
 		<div class="jumbo-content login" style="flex-basis: 30%;">
 			<!--<h2 style="color:#343a40; text-align: center; font-size: 3vw;"> Welcome to StudyBuddy</h2>-->
+      <!-- Message for wrong email password combination-->
+      
+      <!-- Login form -->
 			<br>
 			<h4 style="color:#343a40; text-align: center;"> Sign In </h4>
+      <% if flash[:notice] %>
+      <div class="notice" style="color:red"><%= flash[:notice] %></div>
+      <% else %>
+      <br>
+      <% end %>
 			<%= form_for(:session, url: login_path) do |f| %>
 	     	<%= f.label :email, class:"sr-only" %>
 	     	<%= f.email_field :email, class: 'form-control', placeholder: "Email Address" %>
@@ -155,13 +163,7 @@
 <div class="container">
 	<!--<h1>Welcome to StuddyBuddy! </h1>-->
 </div>
-	<!-- Message for wrong email password combination-->
-	<!-- fix to move flash notice elsewhere -->
-	<% if flash[:notice] %>
-    <div class="notice" style="color:red"><%= flash[:notice] %></div>
-  	<% end %>
-
-
+	
 
 	<!--Login Form
 	<div class="container" style="width: 20em; background-color: rgba(255,255,255,0.65); padding: 1em; border-radius: 20px;">
@@ -176,9 +178,3 @@
 
      	<%= f.submit "Log in", class: "btn btn-primary btn-primary btn-block" %>
     <% end %>
-<<<<<<< HEAD
-
-
-	<!--Link to Signup form -->
-</div>
-</body>

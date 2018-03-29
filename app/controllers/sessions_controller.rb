@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
   layout false
 
   def new
+    #if already logged in, go to posts page
+    if current_user.present?
+      redirect_to posts_path
+    end
   end
 
 def create
