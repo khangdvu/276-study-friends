@@ -159,10 +159,10 @@ body {
   <%= message.body %>
   <span class="time-right"><%=message.message_time %>     </span>
 </div>
+<% end %>
+<% end %>
+<% end %>
 </div>
-<% end %>
-<% end %>
-<% end %>
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
 <div class="field">
     <%= f.text_area :body, class: "form-control" %>
@@ -171,8 +171,8 @@ body {
 <div>
     <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
 </div>
-<% end %>
 </div>
+<% end %>
 
 </body>
 </html>
